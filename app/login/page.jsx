@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/app/context/AuthContext";
 import Cookies from "js-cookie";
 
+var in30Minutes = 1 / 48;
+
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,7 +23,7 @@ function Login() {
 
     try {
       await login(email, password);
-      Cookies.set("verify", "value", { secure: true });
+      Cookies.set("verify", "value", { expires: in30Minutes });
       console.log("logged in");
       router.push("/dashboard");
     } catch (error) {
@@ -55,6 +57,7 @@ function Login() {
           className="w-full"
           id="outlined-basic"
           label="password"
+          type="password"
           variant="outlined"
           onChange={(e) => setPassword(e.target.value)}
         />

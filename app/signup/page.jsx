@@ -24,11 +24,13 @@ function Signup() {
       label: "password",
       targetValue: setPassword,
       value: password,
+      type: "password",
     },
     {
       label: "confirm password",
       targetValue: setConfirmPassword,
       value: confirmPassword,
+      type: "password",
     },
   ];
 
@@ -104,6 +106,7 @@ function Signup() {
               label={field.label}
               variant="outlined"
               value={field.value}
+              type={field.type}
               onChange={(e) => field.targetValue(e.target.value)}
             />
           );

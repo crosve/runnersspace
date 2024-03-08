@@ -39,7 +39,12 @@ function Navbar() {
         <div className="flex items-center justify-between py-3">
           <div className="md:py-5 md:block">
             {user ? (
-              <h1 className="text-2xl font-bold">Pace Pulse</h1>
+              <Link
+                href="/dashboard"
+                className="text-2xl font-bold cursor-pointer "
+              >
+                Pace Pulse
+              </Link>
             ) : (
               <Link href="/" className="text-2xl font-bold cursor-pointer ">
                 Pace Pulse
@@ -88,9 +93,9 @@ function Navbar() {
                 </>
               ) : (
                 <>
-                  <Link href="#">Training</Link>
-                  <Link href="#">Nutrition</Link>
-                  <Link href="#">Gear</Link>
+                  <Link href="/dashboard/training">Training</Link>
+                  <Link href="/dashboard/health">Nutrition</Link>
+                  <Link href="/dashboard/gear">Gear</Link>
                   <h1
                     className="block lg:inline-block text-neutral-600 cursor-pointer text-center  hover:text-slate-950"
                     onClick={handlSignout}
