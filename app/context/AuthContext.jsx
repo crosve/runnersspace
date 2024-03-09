@@ -7,6 +7,7 @@ import {
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { auth } from "../firebase";
+import Cookies from "js-cookie";
 
 const AuthContext = createContext();
 
@@ -37,6 +38,7 @@ export const AuthProvider = ({ children }) => {
             console.log("User document does not exist");
           }
         };
+        Cookies.remove("verify");
         getUserInfo();
       } else {
         setUserInfo({});
