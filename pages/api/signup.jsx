@@ -17,7 +17,6 @@ export default async function handler(req, res) {
       username: userRecord.displayName,
     });
 
-    // Send a success response with the created user data
     res.status(200).json({
       message: "User created successfully",
       user: userRecord.toJSON(),

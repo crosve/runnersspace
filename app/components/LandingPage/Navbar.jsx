@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { IoMdMenu, IoMdClose } from "react-icons/io";
 import { useAuth } from "@/app/context/AuthContext";
-import { signOut } from "firebase/auth";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 
@@ -93,9 +92,24 @@ function Navbar() {
                 </>
               ) : (
                 <>
-                  <Link href="/dashboard/training">Training</Link>
-                  <Link href="/dashboard/health">Nutrition</Link>
-                  <Link href="/dashboard/gear">Gear</Link>
+                  <Link
+                    className="block lg:inline-block  cursor-pointer text-center  hover:text-slate-950"
+                    href="/dashboard/training"
+                  >
+                    Training
+                  </Link>
+                  <Link
+                    className="block lg:inline-block  cursor-pointer text-center  hover:text-slate-950"
+                    href="/dashboard/health"
+                  >
+                    Nutrition
+                  </Link>
+                  <Link
+                    className="block lg:inline-block  cursor-pointer text-center  hover:text-slate-950"
+                    href="/dashboard/gear"
+                  >
+                    Gear
+                  </Link>
                   <h1
                     className="block lg:inline-block text-neutral-600 cursor-pointer text-center  hover:text-slate-950"
                     onClick={handlSignout}
