@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function middleware(request) {
     const verify = request.cookies.get('verify');
+    console.log(verify);
     const url = request.url;
 
     if (url.includes('/dashboard')) {
