@@ -23,7 +23,7 @@ function Login() {
 
     try {
       await login(email, password);
-      Cookies.set("verify", "value", { expires: in30Minutes });
+      Cookies.set("verify", "value");
       console.log("logged in");
       router.push("/dashboard");
     } catch (error) {

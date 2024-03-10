@@ -37,15 +37,15 @@ function Navbar() {
       <div className="justify-between md:items-center md:flex">
         <div className="flex items-center justify-between py-3">
           <div className="md:py-5 md:block">
-            {user ? (
+            {!user ? (
+              <Link href="/" className="text-2xl font-bold cursor-pointer ">
+                Pace Pulse
+              </Link>
+            ) : (
               <Link
                 href="/dashboard"
                 className="text-2xl font-bold cursor-pointer "
               >
-                Pace Pulse
-              </Link>
-            ) : (
-              <Link href="/" className="text-2xl font-bold cursor-pointer ">
                 Pace Pulse
               </Link>
             )}
