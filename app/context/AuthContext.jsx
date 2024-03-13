@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }) => {
             console.log("User document does not exist");
           }
         };
-        Cookies.remove("verify");
+
         getUserInfo();
       } else {
         setUserInfo({});
