@@ -110,6 +110,12 @@ function Navbar() {
                   >
                     Gear
                   </Link>
+                  <Link
+                    className="block lg:inline-block cursor-pointer text-center hover:text-slate-950"
+                    href="/dashboard/injuryprevention"
+                  >
+                    Injury Prevention
+                  </Link>
                   <h1
                     className="block lg:inline-block text-neutral-600 cursor-pointer text-center  hover:text-slate-950"
                     onClick={handlSignout}
