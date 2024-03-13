@@ -13,6 +13,6 @@ try {
   }
 }
 
-export const db = admin.firestore(); // Initialize Firestore
+export const db = admin.firestore(); 
 
 export default admin;
