@@ -1,7 +1,5 @@
 import React from "react";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
+
 import Box from "@mui/material/Box";
 
 const bull = (
@@ -15,19 +13,14 @@ const bull = (
 
 function Cards({ week, days }) {
   return (
-    <CardContent>
-      <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-        {week}
-      </Typography>
-      {days.map((day, index) => {
-        return (
-          <Typography variant="body2" key={index}>
-            {bull}
-            {day.day}
-          </Typography>
-        );
-      })}
-    </CardContent>
+    <div className="bg-white shadow-md p-4 rounded-md mb-4">
+      <h2 className="text-lg font-medium mb-2">{week}</h2>
+      {days.map((day, index) => (
+        <p key={index} className="text-sm">
+          &bull; {day.day}
+        </p>
+      ))}
+    </div>
   );
 }
 
