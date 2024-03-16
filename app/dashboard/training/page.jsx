@@ -61,8 +61,8 @@ function Training() {
             <div className="lg:w-1/2 flex justify-center items-center bg-gray-200">
               <div className="p-8">
                 <h1 className="lg:text-left text-xl text-center">
-                  Let's get you a personalized training plan. <br /> Input some
-                  details about what you're looking for
+                  Let&apos;s get you a personalized training plan. <br /> Input
+                  some details about what you&apos;re looking for
                 </h1>
               </div>
             </div>
