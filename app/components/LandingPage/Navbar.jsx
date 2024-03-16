@@ -33,7 +33,7 @@ function Navbar() {
   };
 
   return (
-    <nav className="w-full mx-auto fixed px-4 sm:px-20 top-0 z-50 bg-white shadow text-black">
+    <nav className="w-full mx-auto fixed px-4 sm:px-20 top-0 z-50 bg-white-slate-200 shadow text-black">
       <div className="justify-between md:items-center md:flex">
         <div className="flex items-center justify-between py-3">
           <div className="md:py-5 md:block">

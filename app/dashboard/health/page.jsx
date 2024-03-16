@@ -1,6 +1,6 @@
 import Input from "../../components/LandingPage/healthcomponents/Input";
-import Button from "@/app/components/LandingPage/healthcomponents/button";
-import Cards from "@/app/components/LandingPage/healthcomponents/Cards";
+import Button from "../../components/LandingPage/healthcomponents/Button";
+import Cards from "../../components/LandingPage/healthcomponents/Cards";
 
 const cardInfo = [
   {
