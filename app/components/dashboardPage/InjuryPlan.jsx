@@ -8,7 +8,7 @@ function InjuryPlan({ injuryInfo }) {
       className="grid grid-rows-1 lg:grid-cols-2 gap-6"
     >
       <h1 className="col-span-full text-center text-2xl font-extrabold	">
-        Injury Prevention Plan
+        Injury Prevention Plans
       </h1>
       {injuryInfo.map((current, index) => (
         <Cards key={index} title={current.title} workouts={current.workouts} />
