@@ -33,7 +33,7 @@ function Training() {
   return (
     <>
       {trainingPlan ? (
-        <div className="bg-gray-100 relative mt-24 p-20">
+        <div className="bg-gray-100 relative  p-20">
           <div
             style={{ maxWidth: "800px", margin: "0 auto" }}
             className="grid grid-cols-4 gap-6"
@@ -56,7 +56,7 @@ function Training() {
           </div>
         </div>
       ) : (
-        <div className="bg-gray-100 relative mt-10">
+        <div className="bg-gray-100 relative mt-10 md:mt-0 ">
           <div className="min-h-screen min-w-screen flex flex-col lg:flex-row">
             <div className="lg:w-1/2 flex justify-center items-center bg-gray-200">
               <div className="p-8">

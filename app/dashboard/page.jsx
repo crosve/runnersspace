@@ -5,9 +5,12 @@ import { useState } from "react";
 
 import UsersTabs from "../components/dashboardPage/UsersTabs";
 import Cards from "../components/trainingPage/Cards";
+import InjuryPlan from "../components/dashboardPage/InjuryPlan";
 
 function Dashboard() {
   const [info, setInfo] = useState(null);
+  const [injuryInfo, setInjuryInfo] = useState(null);
+
   const [reveal, setReveal] = useState(false);
   const [feedBack, setFeedBack] = useState("");
 
@@ -17,7 +20,7 @@ function Dashboard() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ feedback: feedBack }),
+      body: JSON.stringify({ feedback: feedBack, info: info }),
     });
     const data = await res.json();
     console.log(data);
@@ -25,12 +28,12 @@ function Dashboard() {
 
   return (
     <main className="flex flex-col items-center h-screen w-screen overflow-auto">
-      <UsersTabs info={info} setInfo={setInfo} />
+      <UsersTabs info={info} setInfo={setInfo} setInjuryInfo={setInjuryInfo} />
       {info && (
         <div className=" relative mt-8 p-20">
           <div
             style={{ maxWidth: "1000px", margin: "0 auto" }}
-            className="grid grid-cols-4 gap-6"
+            className="grid grid-rows-1 lg:grid-cols-4 gap-6"
           >
             <h1 className="col-span-full text-center text-2xl font-extrabold	">
               Training Plan
@@ -67,6 +70,7 @@ function Dashboard() {
           )}
         </div>
       )}
+      {injuryInfo && <InjuryPlan injuryInfo={injuryInfo} />}
     </main>
   );
 }
