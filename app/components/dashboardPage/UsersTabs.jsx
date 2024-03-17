@@ -27,12 +27,11 @@ function UsersTabs({ info, setInfo, setInjuryInfo }) {
 
     if (target === "Your Training Plan") {
       try {
-        const reponse = await fetch("api/usertraining", {
-          method: "POST",
+        const reponse = await fetch(`api/usertraining?uid=${user.uid}`, {
+          method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ uid: user.uid }),
         });
         const data = await reponse.json();
         setInfo(data);
@@ -43,14 +42,13 @@ function UsersTabs({ info, setInfo, setInjuryInfo }) {
     }
     if (target === "Your Injury Prevention Plan") {
       try {
-        const reponse = await fetch("api/userinjury", {
-          method: "POST",
+        const response = await fetch(`api/userinjury?uid=${user.uid}`, {
+          method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ uid: user.uid }),
         });
-        const data = await reponse.json();
+        const data = await response.json();
         setInjuryInfo(data);
         setInfo(null);
       } catch (error) {

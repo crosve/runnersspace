@@ -1,8 +1,7 @@
-import admin from "@/app/lib/firebase/firebase";
 import { db } from "@/app/lib/firebase/firebase";
 
 export default async function handler(req, res) {
-  const { uid } = req.body;
+  const { uid } = req.query;
   const userDocRef = db.collection("users").doc(uid);
   const userDoc = await userDocRef.get();
 
