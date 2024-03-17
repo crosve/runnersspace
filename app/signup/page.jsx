@@ -2,12 +2,18 @@
 import { useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import { useAuth } from "../context/AuthContext";
+import { useRouter } from "next/navigation";
 
 function Signup() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [success, setSuccess] = useState(false);
+
+  const { signUp } = useAuth();
+  const router = useRouter();
 
   const fields = [
     {
@@ -62,19 +68,8 @@ function Signup() {
     }
     console.log(email, password);
     try {
-      const response = await fetch("api/signup", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({ username: userName, email, password }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Something went wrong");
-      }
-
-      const data = await response.json();
+      await signUp(email, password, userName);
+      setSuccess(true);
 
       clearFields();
     } catch (error) {
@@ -118,6 +113,11 @@ function Signup() {
         >
           Signup
         </button>
+        {success && (
+          <p className="text-green-500 font-semibold border-solid">
+            Signup successful
+          </p>
+        )}
       </Box>
     </div>
   );
