@@ -13,27 +13,21 @@ const tabs = [
     label: "Your Saved shoes",
   },
   {
-    label: "Your Nutrition Plan",
+    label: "Pace Calculator",
   },
 ];
 
 function UsersTabs({ info, setInfo, setInjuryInfo }) {
   const [content, setContent] = useState(null);
 
-  const { user } = useAuth();
+  const { user, getUserTrainingPlan, getUserInjuryPlan } = useAuth();
   const handleShow = async (e) => {
     e.preventDefault();
     const target = e.target.textContent;
 
     if (target === "Your Training Plan") {
       try {
-        const reponse = await fetch(`api/usertraining?uid=${user.uid}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        const data = await reponse.json();
+        const data = await getUserTrainingPlan();
         setInfo(data);
         setInjuryInfo(null);
       } catch (error) {
@@ -42,13 +36,7 @@ function UsersTabs({ info, setInfo, setInjuryInfo }) {
     }
     if (target === "Your Injury Prevention Plan") {
       try {
-        const response = await fetch(`api/userinjury?uid=${user.uid}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        const data = await response.json();
+        const data = await getUserInjuryPlan();
         setInjuryInfo(data);
         setInfo(null);
       } catch (error) {
