@@ -2,6 +2,11 @@ import { db } from "@/app/lib/firebase/firebase";
 
 export default async function handler(req, res) {
   const { uid } = req.query;
+
+  if (!uid) {
+    return res.status(400).json({ message: "Missing UID parameter" });
+  }
+
   const userDocRef = db.collection("users").doc(uid);
   const userDoc = await userDocRef.get();
 
@@ -10,6 +15,7 @@ export default async function handler(req, res) {
   }
 
   const userData = userDoc.data();
-  const trainingPlan = userData.trainingPlan;
-  return res.status(200).json(trainingPlan);
+  const injuryPlan = userData.injuryPlan;
+
+  return res.status(200).json(injuryPlan);
 }

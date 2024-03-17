@@ -5,6 +5,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import Cards from "@/app/components/trainingPage/Cards";
+import { FallingLines } from "react-loader-spinner";
 
 const levels = [
   {
@@ -98,6 +99,7 @@ function Form({ trainingPlan, setTrainingPlan }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true); // Show loading spinner
     if (goalTime === "" || level === "" || event === "") {
       alert("Please fill in all fields");
       return;
@@ -125,6 +127,7 @@ function Form({ trainingPlan, setTrainingPlan }) {
             plan = splitPlan({ trainingPlanText });
             // setPlan(plan);
             setTrainingPlan(plan);
+            setLoading(false); // Hide loading spinner
           } else {
             console.error("Invalid data received from API:", data);
           }
@@ -134,79 +137,85 @@ function Form({ trainingPlan, setTrainingPlan }) {
     }
   };
 
-  return (
-    <>
-      <form
-        onSubmit={handleSubmit}
-        style={{ maxWidth: "600px", margin: "0 auto" }}
-      >
-        <Stack spacing={2}>
-          <Autocomplete
-            disablePortal
-            options={levels}
-            getOptionSelected={(option, value) => option.value === value.value}
-            onChange={(event, value) => setLevel(value?.value || "")}
-            renderInput={(params) => <TextField {...params} label="Levels" />}
-          />
-          <Autocomplete
-            disablePortal
-            options={goals}
-            onChange={(event, value) => setEvent(value.value)}
-            renderInput={(params) => <TextField {...params} label="Event" />}
-          />
-          <TextField
-            label="Goal Time"
-            variant="outlined"
-            value={goalTime}
-            onChange={(e) => setGoalTime(e.target.value)}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start"></InputAdornment>
-              ),
-            }}
-          />
-          <TextField
-            label="Current Time (if applicable)"
-            variant="outlined"
-            value={currentTime}
-            onChange={handleCurrentTimeChange}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start"></InputAdornment>
-              ),
-            }}
-          />
-          <TextField
-            id="outlined-multiline-static"
-            label="Additional Information"
-            multiline
-            rows={4}
-            onChange={(e) => setAdditionalInfo(e.target.value)}
-          />
-          <p className="text-sm italic">
-            *Information in this field can be about what training has worked for
-            you in the past. This will help us create a training plan better
-            suited for you
-          </p>
-          <button
-            type="submit"
-            className="rounded text-black px-4 py-2 shadow-md hover:bg-slate-200"
-          >
-            Submit
-          </button>
-        </Stack>
-      </form>
-
-      {/* {loading && (
-        <div style={{ maxWidth: "800px", margin: "0 auto" }} className="block ">
-          <h1>Training Plan</h1>
-          {plan.map((week, index) => (
-            <Cards key={index} week={week.week} days={week.days} />
-          ))}
-        </div>
-      )} */}
-    </>
-  );
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <FallingLines
+          type="ThreeDots"
+          color="#00BFFF"
+          height={100}
+          width={200}
+        />
+      </div>
+    );
+  } else {
+    return (
+      <>
+        <form
+          onSubmit={handleSubmit}
+          style={{ maxWidth: "600px", margin: "0 auto" }}
+        >
+          <Stack spacing={2}>
+            <Autocomplete
+              disablePortal
+              options={levels}
+              getOptionSelected={(option, value) =>
+                option.value === value.value
+              }
+              onChange={(event, value) => setLevel(value?.value || "")}
+              renderInput={(params) => <TextField {...params} label="Levels" />}
+            />
+            <Autocomplete
+              disablePortal
+              options={goals}
+              onChange={(event, value) => setEvent(value.value)}
+              renderInput={(params) => <TextField {...params} label="Event" />}
+            />
+            <TextField
+              label="Goal Time"
+              variant="outlined"
+              value={goalTime}
+              onChange={(e) => setGoalTime(e.target.value)}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start"></InputAdornment>
+                ),
+              }}
+            />
+            <TextField
+              label="Current Time (if applicable)"
+              variant="outlined"
+              value={currentTime}
+              onChange={handleCurrentTimeChange}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start"></InputAdornment>
+                ),
+              }}
+            />
+            <TextField
+              id="outlined-multiline-static"
+              label="Additional Information"
+              multiline
+              rows={4}
+              onChange={(e) => setAdditionalInfo(e.target.value)}
+            />
+            <p className="text-sm italic">
+              *Information in this field can be about what training has worked
+              for you in the past. This will help us create a training plan
+              better suited for you
+            </p>
+            <button
+              type="submit"
+              className="rounded text-black px-4 py-2 shadow-md hover:bg-slate-200"
+            >
+              Submit
+            </button>
+          </Stack>
+        </form>
+      </>
+    );
+  }
 }
 
 export default Form;

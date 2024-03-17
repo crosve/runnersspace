@@ -17,7 +17,7 @@ const tabs = [
   },
 ];
 
-function UsersTabs({ info, setInfo }) {
+function UsersTabs({ info, setInfo, setInjuryInfo }) {
   const [content, setContent] = useState(null);
 
   const { user } = useAuth();
@@ -27,21 +27,33 @@ function UsersTabs({ info, setInfo }) {
 
     if (target === "Your Training Plan") {
       try {
-        const reponse = await fetch("api/usertraining", {
-          method: "POST",
+        const reponse = await fetch(`api/usertraining?uid=${user.uid}`, {
+          method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ uid: user.uid }),
         });
         const data = await reponse.json();
         setInfo(data);
+        setInjuryInfo(null);
       } catch (error) {
         console.log(error);
       }
     }
     if (target === "Your Injury Prevention Plan") {
-      console.log("Your Injury Prevention Plan");
+      try {
+        const response = await fetch(`api/userinjury?uid=${user.uid}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        const data = await response.json();
+        setInjuryInfo(data);
+        setInfo(null);
+      } catch (error) {
+        console.log(error);
+      }
     }
     if (target === "Your Saved shoes") {
       console.log("Your Saved shoes");

@@ -24,12 +24,12 @@ function Carousel() {
   return (
     <div className="flex gap-6 flex-wrap justify-center mb-16">
       {cardInfo.map((card, index) => (
-        <div key={index} className="max-w-sm rounded overflow-hidden shadow-lg">
+        <div key={index} className="max-w-sm rounded overflow-hidden shadow-xl">
           <div className="px-6 py-4">
             <div className="font-bold text-xl mb-2 text-center">
               {card.title}
             </div>
-            <p className="text-gray-700 text-base">{card.description}</p>
+            <p className="text-gray-100		 text-base">{card.description}</p>
           </div>
         </div>
       ))}
