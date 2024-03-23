@@ -50,9 +50,6 @@ function Health() {
           </p>
           <Button />
         </div>
-        {/* <div className="h-80 w-80 border-4"> */}
-        {/* <Input /> */}
-        {/* </div> */}
       </div>
       <div className="h-fit lg:h-screen w-screen ">
         <div className="flex w-full h-full items-center justify-center flex-col p-4">

@@ -1,4 +1,3 @@
-import React from "react";
 import Cards from "../injuryPage/Cards";
 
 function InjuryPlan({ injuryInfo }) {
