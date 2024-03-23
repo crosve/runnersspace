@@ -17,10 +17,10 @@ const tabs = [
   },
 ];
 
-function UsersTabs({ info, setInfo, setInjuryInfo }) {
+function UsersTabs({ info, setInfo, setInjuryInfo, setShoes }) {
   const [content, setContent] = useState(null);
 
-  const { user, getUserTrainingPlan, getUserInjuryPlan } = useAuth();
+  const { getUserTrainingPlan, getUserInjuryPlan, getShoes } = useAuth();
   const handleShow = async (e) => {
     e.preventDefault();
     const target = e.target.textContent;
@@ -30,6 +30,7 @@ function UsersTabs({ info, setInfo, setInjuryInfo }) {
         const data = await getUserTrainingPlan();
         setInfo(data);
         setInjuryInfo(null);
+        setShoes(null);
       } catch (error) {
         console.log(error);
       }
@@ -39,18 +40,24 @@ function UsersTabs({ info, setInfo, setInjuryInfo }) {
         const data = await getUserInjuryPlan();
         setInjuryInfo(data);
         setInfo(null);
+        setShoes(null);
       } catch (error) {
         console.log(error);
       }
     }
     if (target === "Your Saved shoes") {
-      console.log("Your Saved shoes");
+      try {
+        const data = await getShoes();
+        setShoes(data);
+        setInjuryInfo(null);
+        setInfo(null);
+      } catch (error) {
+        console.log(error);
+      }
     }
     if (target === "Your Nutrition Plan") {
       console.log("Your Nutrition Plan");
     }
-    console.log(user.uid);
-    console.log("hey");
   };
 
   return (

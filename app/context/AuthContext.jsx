@@ -60,6 +60,21 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
+  async function getShoes() {
+    try {
+      const userDocRef = doc(db, "users", user.uid);
+      const userDoc = await getDoc(userDocRef);
+      if (!userDoc.exists()) {
+        return console.log("User document does not exist");
+      }
+      const userData = userDoc.data();
+      const shoes = userData.shoes;
+      return shoes;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async function getUserInjuryPlan() {
     try {
       const userDocRef = doc(db, "users", user.uid);
@@ -111,6 +126,7 @@ export const AuthProvider = ({ children }) => {
         signUp,
         getUserTrainingPlan,
         getUserInjuryPlan,
+        getShoes,
       }}
     >
       {children}

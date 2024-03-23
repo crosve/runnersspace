@@ -6,10 +6,13 @@ import { useState } from "react";
 import UsersTabs from "../components/dashboardPage/UsersTabs";
 import Cards from "../components/trainingPage/Cards";
 import InjuryPlan from "../components/dashboardPage/InjuryPlan";
+import ShoesItems from "../components/dashboardPage/ShoesItems";
 
 function Dashboard() {
   const [info, setInfo] = useState(null);
   const [injuryInfo, setInjuryInfo] = useState(null);
+  const [shoes, setShoes] = useState(null);
+  const [checkedWeeks, setCheckedWeeks] = useState([]);
 
   const [reveal, setReveal] = useState(false);
   const [feedBack, setFeedBack] = useState("");
@@ -28,7 +31,12 @@ function Dashboard() {
 
   return (
     <main className="flex flex-col items-center h-screen w-screen overflow-auto">
-      <UsersTabs info={info} setInfo={setInfo} setInjuryInfo={setInjuryInfo} />
+      <UsersTabs
+        info={info}
+        setInfo={setInfo}
+        setInjuryInfo={setInjuryInfo}
+        setShoes={setShoes}
+      />
       {info && (
         <div className=" relative mt-8 p-20">
           <div
@@ -39,7 +47,13 @@ function Dashboard() {
               Training Plan
             </h1>
             {info.map((week, index) => (
-              <Cards key={index} week={week.week} days={week.days} />
+              <Cards
+                key={index}
+                week={week.week}
+                days={week.days}
+                checkedWeeks={checkedWeeks}
+                setCheckedWeeks={setCheckedWeeks}
+              />
             ))}
           </div>
           <div className="flex justify-center">
@@ -71,6 +85,7 @@ function Dashboard() {
         </div>
       )}
       {injuryInfo && <InjuryPlan injuryInfo={injuryInfo} />}
+      {shoes && <ShoesItems shoes={shoes} />}
     </main>
   );
 }
