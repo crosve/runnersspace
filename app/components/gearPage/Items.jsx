@@ -41,7 +41,10 @@ function Items() {
     return (
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 ">
         {data.map((item, index) => (
-          <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg ">
+          <div
+            key={index}
+            className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg "
+          >
             <a onClick={() => handleNewPage(item.shoeUrl)} className="block">
               <img
                 className="w-48 h-auto rounded-t-lg "
