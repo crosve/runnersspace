@@ -14,7 +14,10 @@ function ShoesItems({ shoes }) {
         Saved Shoes
       </h1>
       {shoes.map((item, index) => (
-        <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg ">
+        <div
+          key={index}
+          className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg "
+        >
           <a onClick={() => handleNewPage(item.shoeUrl)} className="block">
             <img
               className="w-48 h-auto rounded-t-lg "
