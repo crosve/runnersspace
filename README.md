@@ -7,7 +7,7 @@ Generative ai powered application where anyone looking to get into running can f
 * training/race shoe recommendation
 
 ## Current Progress
-- Working on the training aspect of the project.
-- Will give back personalized training plan based off some basic questions answered by the user
-- user will have the option of saving this training plan and refrencing it when they log back in 
+- Personalized training complete
+- health advsiory section complete
+- static shoe information, planning on using pupeeteer to webscrape running wharehouse to give users most up to date shoes and prices
 
