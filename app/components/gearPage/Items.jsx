@@ -11,15 +11,29 @@ function Items() {
 
   const { user } = useAuth();
 
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     setLoading(true);
+  //     const response = await fetch("/data.json");
+  //     const data = await response.json();
+  //     setData(data);
+  //     setLoading(false);
+  //   };
+  //   fetchData();
+  // }, []);
+
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      const response = await fetch("/data.json");
-      const data = await response.json();
-      setData(data);
-      setLoading(false);
+    const getItems = async () => {
+      try {
+        const response = await fetch("/api/scrape");
+        const data = await response.json();
+        setData(data.data);
+      } catch (error) {
+        console.log(error);
+      }
     };
-    fetchData();
+
+    getItems();
   }, []);
 
   const handleNewPage = (url) => {
