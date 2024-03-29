@@ -9,7 +9,7 @@ function Gear() {
         <Form />
       </div> */}
 
-      <div className="relative w-full p-6">
+      <div className="relative w-full p-8 lg:p-12">
         <Items />
       </div>
     </div>

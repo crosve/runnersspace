@@ -7,7 +7,7 @@ export default async function handler(req, res) {
   try {
     const browser = await puppeteer.launch({
       headless: false,
-      args: ["--window-size=800,600"], // Set a small window size, // Start the browser maximized
+      args: ["--no-sandbox"],
     });
 
     const page = await browser.newPage();
@@ -25,7 +25,7 @@ export default async function handler(req, res) {
           ?.getAttribute("href"),
         showImage: shoeinfo
           .querySelector(".cattable-wrap-cell-imgwrap a img")
-          ?.getAttribute("src"),
+          .getAttribute("src"),
         shoeName: shoeinfo.querySelector(
           ".cattable-wrap-cell-info .cattable-wrap-cell-info-name"
         ).innerText,
@@ -38,42 +38,6 @@ export default async function handler(req, res) {
 
     await browser.close();
 
-    // const browser = await puppeteer.launch({
-    //   headless: false,
-    //   args: ["--no-sandbox"],
-    // });
-
-    // const page = await browser.newPage();
-
-    // await page.goto(url);
-
-    // const evaluate = await page.evaluate(() => {
-    //   const shoesData = Array.from(
-    //     document.querySelectorAll(".cattable-wrap-cell.gtm_impression")
-    //   );
-    //   console.log("Number of shoes found:", shoesData.length);
-    //   return shoesData.map((shoeinfo) => ({
-    //     shoeUrl: shoeinfo
-    //       .querySelector(".cattable-wrap-cell-imgwrap a")
-    //       ?.getAttribute("href"),
-    //     showImage: shoeinfo
-    //       .querySelector(".cattable-wrap-cell-imgwrap a img")
-    //       ?.getAttribute("src"),
-    //     shoeName: shoeinfo.querySelector(
-    //       ".cattable-wrap-cell-info .cattable-wrap-cell-info-name"
-    //     ).innerText,
-    //     shoePrice: shoeinfo.querySelector(
-    //       ".cattable-wrap-cell-info .cattable-wrap-cell-info-price span"
-    //     ).innerText,
-    //   }));
-    // });
-    // console.log(evaluate);
-
-    // await browser.close();
-
-    // console.log("Scraped data:", evaluate);
-
-    // Return the scraped data as a response
     res
       .status(200)
       .json({ message: "Scraping completed successfully", data: evaluate });
