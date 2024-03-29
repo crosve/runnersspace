@@ -85,7 +85,7 @@ function Dashboard() {
         </div>
       )}
       {injuryInfo && <InjuryPlan injuryInfo={injuryInfo} />}
-      {shoes && <ShoesItems shoes={shoes} />}
+      {shoes && <ShoesItems shoes={shoes} setShoes={setShoes} />}
     </main>
   );
 }

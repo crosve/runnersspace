@@ -6,7 +6,13 @@ import {
   createUserWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import { doc, getDoc, collection } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  collection,
+  updateDoc,
+  arrayRemove,
+} from "firebase/firestore";
 import { db } from "../firebase";
 import { auth } from "../firebase";
 import Cookies from "js-cookie";
@@ -39,6 +45,17 @@ export const AuthProvider = ({ children }) => {
 
   function login(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
+  }
+
+  async function deleteItem(item) {
+    try {
+      const userRef = doc(db, "users", user.uid);
+      await updateDoc(userRef, {
+        shoes: arrayRemove(item),
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   function logout() {
@@ -127,6 +144,7 @@ export const AuthProvider = ({ children }) => {
         getUserTrainingPlan,
         getUserInjuryPlan,
         getShoes,
+        deleteItem,
       }}
     >
       {children}
