@@ -10,7 +10,7 @@ function ShoesItems({ shoes, setShoes }) {
 
   const deleteItem1 = (item) => {
     deleteItem(item);
-    const newShoes = shoes.filter((shoe) => shoe.shoeName !== item.shoeName);
+    const newShoes = shoes.filter((shoe) => shoe !== item);
     setShoes(newShoes);
   };
 

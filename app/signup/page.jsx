@@ -49,7 +49,6 @@ function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(email, password, confirmPassword);
     setEmail(email.trim());
     if (
       userName === "" ||
@@ -66,11 +65,9 @@ function Signup() {
     ) {
       return alert("Passwords do not match");
     }
-    console.log(email, password);
     try {
       await signUp(email, password, userName);
       setSuccess(true);
-
       clearFields();
     } catch (error) {
       console.log(error);
@@ -78,47 +75,41 @@ function Signup() {
   };
 
   return (
-    <div className="relative text-white h-screen flex items-center justify-center">
-      <Box
-        sx={{
-          padding: "2",
-          display: "flex",
-          flexDirection: "column",
-          gap: "1rem",
-          alignItems: "center",
-          justifyContent: "center",
-          width: "300px",
-        }}
-      >
-        <h1 className="text-bold text-2xl text-black"> Signup </h1>
-
-        {fields.map((field) => {
-          return (
+    <div className="relative  text-gray min-h-screen flex items-center justify-center m-6">
+      <div className="bg-white rounded-lg p-8 max-w-md w-full">
+        <h1 className="text-3xl font-bold mb-6 text-gray-900">Signup</h1>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {fields.map((field) => (
             <TextField
               key={field.label}
               className="w-full"
-              id="outlined-basic"
+              id={field.label}
               label={field.label}
               variant="outlined"
               value={field.value}
               type={field.type}
               onChange={(e) => field.targetValue(e.target.value)}
             />
-          );
-        })}
-
-        <button
-          onClick={handleSubmit}
-          className="text-black border-2 w-full py-2 px-4 rounded"
-        >
-          Signup
-        </button>
+          ))}
+          <button
+            type="submit"
+            className="w-full bg-gray-500 text-white py-2 rounded-md hover:bg-gray-600 focus:outline-none focus:ring focus:ring-blue-200"
+          >
+            Signup
+          </button>
+        </form>
+        <h1 className="pt-4 text-left">
+          Already have an account? Sign in{" "}
+          <a className="text-sky-700	" href="/login">
+            here
+          </a>
+        </h1>
         {success && (
           <p className="text-green-500 font-semibold border-solid">
             Signup successful
           </p>
         )}
-      </Box>
+      </div>
     </div>
   );
 }

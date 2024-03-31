@@ -13,6 +13,10 @@ module.exports = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         'nutrtion-bg' : "url('/nutrition.jpeg')", 
       },
+      backdropFilter: {
+        'bg-color' : 'rgba(255, 255, 255, 0.2)',
+        'blur-saturate': 'blur(20px) saturate(160%) contrast(45%) brightness(140%)',
+      },
     },
   },
   plugins: [],

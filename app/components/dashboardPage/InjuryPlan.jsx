@@ -4,9 +4,9 @@ function InjuryPlan({ injuryInfo }) {
   return (
     <div
       style={{ maxWidth: "800px", margin: "0 auto" }}
-      className="grid grid-rows-1 lg:grid-cols-2 gap-6"
+      className="grid grid-rows-1 lg:grid-cols-2 gap-8 "
     >
-      <h1 className="col-span-full text-center text-2xl font-extrabold	">
+      <h1 className="col-span-full text-center text-2xl font-extrabold mt-20 mb-4	">
         Injury Prevention Plans
       </h1>
       {injuryInfo.map((current, index) => (
