@@ -33,8 +33,11 @@ function Navbar() {
   };
 
   return (
-    <nav className="w-full mx-auto fixed px-4 sm:px-20 top-0 z-50 bg-white-slate-200 shadow text-black">
-      <div className="justify-between md:items-center md:flex">
+    <nav
+      className="w-full mx-auto fixed px-4 sm:px-20 top-0 z-50 bg-white-slate-200 shadow text-black"
+      style={{ backdropFilter: "blur(20px)" }}
+    >
+      <div className="justify-between md:items-center md:flex  ">
         <div className="flex items-center justify-between py-3">
           <div className="md:py-5 md:block">
             {!user ? (
@@ -69,55 +72,39 @@ function Navbar() {
               {!user ? (
                 <>
                   <Link
-                    className="block lg:inline-block cursor-pointer text-center  hover:text-slate-950 "
+                    className="tag-hover"
                     href="/signup"
                     onClick={() => setNavBar(!navBar)}
                   >
                     Signup
                   </Link>
                   <Link
-                    className="block lg:inline-block  cursor-pointer text-center  hover:text-slate-950"
+                    className="tag-hover"
                     href="/login"
                     onClick={() => setNavBar(!navBar)}
                   >
                     Login
                   </Link>
-                  <Link
-                    className="block lg:inline-block text-neutral-600 cursor-pointer text-center  hover:text-slate-950 "
-                    href="/feedback"
-                    onClick={() => setNavBar(!navBar)}
-                  >
-                    Feedback
-                  </Link>
                 </>
               ) : (
                 <>
-                  <Link
-                    className="block lg:inline-block  cursor-pointer text-center  hover:text-slate-950"
-                    href="/dashboard/training"
-                  >
+                  <Link className="tag-hover" href="/dashboard/training">
                     Training
                   </Link>
-                  <Link
-                    className="block lg:inline-block  cursor-pointer text-center  hover:text-slate-950"
-                    href="/dashboard/health"
-                  >
+                  <Link className="tag-hover" href="/dashboard/health">
                     Nutrition
                   </Link>
-                  <Link
-                    className="block lg:inline-block  cursor-pointer text-center  hover:text-slate-950"
-                    href="/dashboard/gear"
-                  >
+                  <Link className="tag-hover" href="/dashboard/gear">
                     Gear
                   </Link>
                   <Link
-                    className="block lg:inline-block cursor-pointer text-center hover:text-slate-950"
+                    className="tag-hover"
                     href="/dashboard/injuryprevention"
                   >
                     Injury Prevention
                   </Link>
                   <h1
-                    className="block lg:inline-block text-neutral-600 cursor-pointer text-center  hover:text-slate-950"
+                    className="tag-hover cursor-pointer"
                     onClick={handlSignout}
                   >
                     Signout

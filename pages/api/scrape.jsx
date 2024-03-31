@@ -1,3 +1,4 @@
+"use server";
 import puppeteer from "puppeteer";
 
 const url =
@@ -12,7 +13,26 @@ export default async function handler(req, res) {
 
     const page = await browser.newPage();
 
-    await page.goto(url);
+    await page.goto(url, { waitUntil: "networkidle0" });
+
+    async function scrollToBottom(speed) {
+      await page.evaluate(async (distance) => {
+        await new Promise((resolve, reject) => {
+          let totalHeight = 0;
+          const timer = setInterval(() => {
+            const scrollHeight = document.body.scrollHeight;
+            window.scrollBy(0, distance);
+            totalHeight += distance;
+            if (totalHeight >= scrollHeight) {
+              clearInterval(timer);
+              resolve();
+            }
+          }, 100);
+        });
+      }, speed);
+    }
+
+    await scrollToBottom(800);
 
     const evaluate = await page.evaluate(() => {
       const shoesData = Array.from(
@@ -34,9 +54,9 @@ export default async function handler(req, res) {
         ).innerText,
       }));
     });
-    console.log(evaluate);
 
     await browser.close();
+    console.log(evaluate);
 
     res
       .status(200)
