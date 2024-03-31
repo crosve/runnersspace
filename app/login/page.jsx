@@ -72,7 +72,7 @@ function Login() {
           </button>
         </form>
         <h1 className="pt-4 text-left">
-          Don't have an account? Create one{" "}
+          Don&apos;t have an account? Create one{" "}
           <a className="text-sky-700	" href="/signup">
             here
           </a>
