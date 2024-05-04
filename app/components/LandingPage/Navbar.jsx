@@ -5,6 +5,7 @@ import { IoMdMenu, IoMdClose } from "react-icons/io";
 import { useAuth } from "@/app/context/AuthContext";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
+import UserNav from "./UserNav";
 
 const pages = [
   {
@@ -88,21 +89,7 @@ function Navbar() {
                 </>
               ) : (
                 <>
-                  <Link className="tag-hover" href="/dashboard/training">
-                    Training
-                  </Link>
-                  <Link className="tag-hover" href="/dashboard/health">
-                    Nutrition
-                  </Link>
-                  <Link className="tag-hover" href="/dashboard/gear">
-                    Gear
-                  </Link>
-                  <Link
-                    className="tag-hover"
-                    href="/dashboard/injuryprevention"
-                  >
-                    Injury Prevention
-                  </Link>
+                  <UserNav />
                   <h1
                     className="tag-hover cursor-pointer"
                     onClick={handlSignout}

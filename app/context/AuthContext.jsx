@@ -10,6 +10,7 @@ import {
   doc,
   getDoc,
   collection,
+  setDoc,
   updateDoc,
   arrayRemove,
 } from "firebase/firestore";
@@ -42,7 +43,6 @@ export const AuthProvider = ({ children }) => {
         throw error;
       });
   }
-
   function login(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
   }
