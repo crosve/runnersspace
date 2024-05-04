@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 function Signup() {
   const [userName, setUserName] = useState("");
@@ -12,7 +13,7 @@ function Signup() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [success, setSuccess] = useState(false);
 
-  const { signUp } = useAuth();
+  const { signUp, user, logout } = useAuth();
   const router = useRouter();
 
   const fields = [
@@ -68,6 +69,7 @@ function Signup() {
     try {
       await signUp(email, password, userName);
       setSuccess(true);
+      await logout();
       clearFields();
     } catch (error) {
       console.log(error);
