@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/app/context/AuthContext";
@@ -40,23 +39,23 @@ function Login() {
         <h1 className="text-3xl font-bold mb-6 text-gray-900">Login</h1>
         <form onSubmit={handleLogin} className="space-y-4">
           <div>
-            <label htmlFor="email" className="block text-gray-900">
+            {/* <label htmlFor="email" className="block text-gray-900">
               Email
-            </label>
-            <input
+            </label> */}
+            <TextField
               id="email"
               type="email"
               value={email}
-              className="w-full px-4 py-2 rounded-md border-gray-300 focus:ring focus:ring-blue-200"
+              className="w-full px-4 rounded-md border-gray-300 focus:ring focus:ring-blue-200"
               placeholder="Enter your email"
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div>
-            <label htmlFor="password" className="block text-gray-900">
+            {/* <label htmlFor="password" className="block text-gray-900">
               Password
-            </label>
-            <input
+            </label> */}
+            <TextField
               id="password"
               type="password"
               className="w-full px-4 py-2 rounded-md border-gray-300 focus:ring focus:ring-blue-200"

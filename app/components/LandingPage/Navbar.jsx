@@ -6,6 +6,10 @@ import { useAuth } from "@/app/context/AuthContext";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import UserNav from "./UserNav";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Avatar from "@mui/material/Avatar";
+import Divider from "@mui/material/Divider";
 
 const pages = [
   {
@@ -17,6 +21,17 @@ const pages = [
 function Navbar() {
   const [navBar, setNavBar] = useState(false);
   const { user, logout } = useAuth();
+  const [auth, setAuth] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   const router = useRouter();
 
   useEffect(() => {
@@ -89,13 +104,74 @@ function Navbar() {
                 </>
               ) : (
                 <>
-                  <UserNav />
-                  <h1
-                    className="tag-hover cursor-pointer"
-                    onClick={handlSignout}
+                  <button
+                    onClick={handleClick}
+                    className="tag-hover"
+                    aria-controls="basic-menu"
+                    aria-haspopup="true"
                   >
-                    Signout
-                  </h1>
+                    <Avatar />
+                  </button>
+                  <Menu
+                    id="account-menu"
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClose={handleClose}
+                    PaperProps={{
+                      elevation: 0,
+                      sx: {
+                        overflow: "visible",
+                        filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                        mt: 1.5,
+                        "& .MuiAvatar-root": {
+                          width: 32,
+                          height: 32,
+                          ml: -0.5,
+                          mr: 1,
+                        },
+                        "&::before": {
+                          content: '""',
+                          display: "block",
+                          position: "absolute",
+                          top: 0,
+                          right: 14,
+                          width: 10,
+                          height: 10,
+                          bgcolor: "background.paper",
+                          transform: "translateY(-50%) rotate(45deg)",
+                          zIndex: 0,
+                        },
+                      },
+                    }}
+                    transformOrigin={{ horizontal: "right", vertical: "top" }}
+                    anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+                    MenuListProps={{
+                      "aria-labelledby": "basic-button",
+                    }}
+                  >
+                    <MenuItem onClick={handleClose}>
+                      <Avatar /> <Link href="/dashboard/profile">Profile</Link>
+                    </MenuItem>
+                    <Divider />
+                    <MenuItem onClick={handleClose}>
+                      <Link className="tag-hover" href="/dashboard/health">
+                        Nutrition
+                      </Link>
+                    </MenuItem>
+                    {/* <MenuItem onClick={handleClose}>
+                      <Link href="/dashboard/gear">Gear</Link>
+                    </MenuItem> */}
+                    <MenuItem onClick={handleClose}>
+                      <Link
+                        className="tag-hover"
+                        href="/dashboard/injuryprevention"
+                      >
+                        Injury Prevention
+                      </Link>
+                    </MenuItem>
+
+                    <MenuItem onClick={handlSignout}>Signout</MenuItem>
+                  </Menu>
                 </>
               )}
             </ul>
